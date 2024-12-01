@@ -1,0 +1,405 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Add New User Form</title>
+    <!--<link rel="stylesheet" href="Add_New_User.css">-->
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"-->
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Iconscout Link For Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+        .input-group-text {
+        position: relative;
+        }
+
+        .error-icon,
+        .success-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none;
+        }
+
+        .input-group.invalid .error-icon {
+        display: block;
+        }
+
+        .input-group.valid .success-icon {
+        display: block;
+        }
+
+        .form-control:invalid {
+        border-color:#red
+        }
+
+        .form-control:valid {
+        border-color: #red
+        }
+
+        .listbox-group select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url('path-to-your-custom-arrow-icon.png');
+        background-repeat: no-repeat;
+        background-position: right center;
+        padding-right: 20px;
+        }
+
+        .inputGroup textarea {
+        resize: vertical;
+        padding-top: 35px;
+        min-width: 250px;
+        background-color: transparent;
+        }
+
+        textarea:invalid {
+        border-color: red;
+        }
+
+        textarea:valid {
+        border-color: green;
+        }
+
+        .input-container {
+        position: relative;
+        }
+
+        .input-indicator {
+        position: absolute;
+        top: 5%;
+        right: -25%;
+        color: red;
+        display: none;
+        }
+
+        .input-indicator.valid {
+        color: green;
+        }
+
+        .input-indicator.invalid {
+        color: red;
+        }
+
+    </style>
+    </head>
+    <body>
+    <div class="form-container">
+        <h2>Add New User Form</h2>
+        <form id="addnewuserForm" class="form">
+
+        <div class="inputGroup">
+            <input type="text" id="name" required="" autocomplete="off">    
+            <label for="name">Name</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="father_name" required="" autocomplete="off">
+            <label for="father_name">Father's Name</label>
+        </div>
+
+        <label for="gender">Gender:</label>
+        <div class="radio-group">
+            <label>
+            <input type="radio" name="gender" value="male" checked>
+            <span>Male</span>
+            </label>
+            <label>
+            <input type="radio" name="gender" value="female">
+            <span>Female</span>
+            </label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="date" id="dateInput" required>
+            <label for="dateInput">DOB</label>
+        </div>
+
+        <div class="wrapper">
+            <div class="select-btn">
+              <span>Country</span>
+              <i class="uil uil-angle-down"></i>
+            </div>
+            <div class="content">
+              <div class="search">
+                <i class="uil uil-search"></i>
+                <input spellcheck="false" type="text" placeholder="Search">
+              </div>
+              <ul class="options"></ul>
+            </div>
+          </div>
+
+        <div class="inputGroup">
+            <input type="number" id="height" required="" autocomplete="off">
+            <label for="height">Height (cm)</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="number" id="weight" required="" autocomplete="off">    
+            <label for="weight">weight (kg)</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="registration_ID" required="" autocomplete="off">    
+            <label for="registration_ID">registration ID</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="number" id="contact_no" required="" autocomplete="off">    
+            <label for="contact_no">Contact No</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="email_address" required="" autocomplete="off">    
+            <label for="email_address">Email Address</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="address" required="" autocomplete="off">    
+            <label for="address">Address</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="marital_status" required="" autocomplete="off">    
+            <label for="marital_status">marital status</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="emergency_contact_name" required="" autocomplete="off";>    
+            <label for="emergency_contact_name">Emergency Contact Name</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="emergency_contact_no" required="" autocomplete="off">    
+            <label for="emergency_contact_no">Emergency Contact No</label>
+        </div>
+
+        <div class="inputGroup">
+            <textarea id="bio" rows="4" cols="30" required></textarea>
+            <label for="bio">Bio</label>
+            <span class="input-indicator"><i class="fas fa-times"></i></span>
+        </div>
+
+        <div class="inputGroup">
+            <input type="file" id="fileInput">
+            <label for="fileInput">Profile Pic</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="education" required="" autocomplete="off">    
+            <label for="education">education</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="college" required="" autocomplete="off">    
+            <label for="college">College</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="major" required="" autocomplete="off">    
+            <label for="major">major</label>
+        </div>
+    
+        <div class="wrapper2">
+            <div class="select-btn2">
+              <span>Department</span>
+              <i class="uil uil-angle-down"></i>
+            </div>
+            <div class="content2">
+              <div class="search2">
+                <i class="uil uil-search2"></i>
+                <input spellcheck="false" type="text" placeholder="search2">
+              </div>
+              <ul class="options2"></ul>
+            </div>
+          </div>
+
+        <div class="inputGroup">
+            <input type="text" id="position" required="" autocomplete="off">
+            <label for="position">Position</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="text" id="job_title" required="" autocomplete="off">    
+            <label for="job_title">job title</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="number" id="salary" required="" autocomplete="off">
+            <label for="salary">Salary</label>
+        </div>
+
+        <div class="listbox-group">
+            <select id="employmentType" name="employmentType" required>
+            <option value="" disabled selected></option>
+            <option value="fullTime">Full-time</option>
+            <option value="partTime">Part-time</option>
+            <option value="contract">Contract</option>
+            </select>
+            <label class="input-label" for="employmentType">Employment Type</label>
+        </div>
+
+        <div class="listbox-group">
+            <select id="status" name="status" required>
+            <option value="" disabled selected></option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+            </select>
+            <label class="input-label" for="status">Status</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="date" id="dateInput" required>
+            <label for="dateInput">DOJ</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="email" id="email" required="" autocomplete="username" >
+            <label for="email">Email</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="password" id="password" required="" autocomplete="off">
+            <label for="password">Password</label>
+        </div>
+
+        <div class="submit">
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset" class="reset-button">
+        </div>
+
+        </form>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        const textarea = document.getElementById('bio');
+        const indicator = document.querySelector('.input-indicator');
+        indicator.style.display = 'block';
+        indicator.innerHTML = '<i class="fas fa-times"></i>';
+        textarea.addEventListener('input', function() {
+        if (textarea.value.trim() === '') {
+            indicator.style.display = 'block';
+            indicator.innerHTML = '<i class="fas fa-times"></i>';
+            indicator.classList.add('invalid');
+            indicator.classList.remove('valid');
+        } else {
+            indicator.style.display = 'block';
+            indicator.innerHTML = '<i class="fas fa-check"></i>';
+            indicator.classList.add('valid');
+            indicator.classList.remove('invalid'); 
+        }
+        });
+    </script>
+    <!--script>
+        // Get the current date and time
+        //const currentDate = new Date();
+        //const currentDateString = currentDate.toISOString().split('T')[0];
+        //const currentTimeString = currentDate.toTimeString().split(' ')[0];
+
+        // Set the default values of the date and time inputs
+        //document.getElementById('dateInput').value = currentDateString;
+        //document.getElementById('timeInput').value = currentTimeString;
+    </script-->
+    <script>
+
+        /* Country */
+        const wrapper = document.querySelector(".wrapper");
+        const selectBtn = wrapper.querySelector(".select-btn");
+        const searchInp = wrapper.querySelector("input");
+        const options = wrapper.querySelector(".options");
+
+        let countries = ["Afghanistan", "Algeria", "Argentina", "Australia", "Bangladesh", "Belgium", "Bhutan",
+                        "Brazil", "Canada", "China", "Denmark", "Ethiopia", "Finland", "France", "Germany",
+                        "Hungary", "Iceland", "India", "Indonesia", "Iran", "Italy", "Japan", "Malaysia",
+                        "Maldives", "Mexico", "Morocco", "Nepal", "Netherlands", "Nigeria", "Norway", "Pakistan",
+                        "Peru", "Russia", "Romania", "South_Africa", "Spain", "Sri_Lanka", "Sweden", "Switzerland",
+                        "Thailand", "Turkey", "Uganda", "Ukraine", "United_States", "United_Kingdom", "Vietnam"];
+
+        function addCountry(selectedCountry) {
+            options.innerHTML = "";
+            countries.forEach(country => {
+                let isSelected = country == selectedCountry ? "selected" : "";
+                let li = `<li onclick="updateName(this)" class="${isSelected}">${country}</li>`;
+                options.insertAdjacentHTML("beforeend", li);
+            });
+        }
+
+        addCountry();
+
+        function updateName(selectedLi) {
+            searchInp.value = "";
+            addCountry(selectedLi.innerText);
+            wrapper.classList.remove("active");
+            selectBtn.firstElementChild.innerText = selectedLi.innerText;
+        }
+
+        searchInp.addEventListener("keyup", () => {
+            let arr = [];
+            let searchWord = searchInp.value.toLowerCase();
+            arr = countries
+            .filter(data => {data.toLowerCase().startsWith(searchWord);
+            }).map(data => {
+                let isSelected = data == selectBtn.firstElementChild.innerText ? "selected" : "";
+                return `<li onclick="updateName(this)" class="${isSelected}">${data}</li>`;
+            }).join("");
+            options.innerHTML = arr ? arr : `<p style="margin-top: 10px;">Oops! Country not found</p>`;
+        });
+
+        selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
+
+        /* Department */
+        const wrapper2 = document.querySelector(".wrapper2");
+        const selectBtn2 = wrapper2.querySelector(".select-btn2");
+        const search2Inp = wrapper2.querySelector("input");
+        const options2 = wrapper2.querySelector(".options2");
+
+        let departments = ["Department 1", "Department 2", "Department 3"];
+
+        function addDepartment(selectedDepartment) {
+    options2.innerHTML = "";
+    departments.forEach(department => {
+      let isSelected = department == selectedDepartment ? "selected" : "";
+      let li = `<li onclick="updateName2(this)" class="${isSelected}">${department}</li>`;
+      options2.insertAdjacentHTML("beforeend", li);
+    });
+  }
+
+  function updateName2(selectedLi) {
+    search2Inp.value = "";
+    addDepartment(selectedLi.innerText);
+    wrapper2.classList.remove("active");
+    selectBtn2.firstElementChild.innerText = selectedLi.innerText;
+  }
+
+  addDepartment();
+
+  search2Inp.addEventListener("keyup", () => {
+    let arr = [];
+    let search2Word = search2Inp.value.toLowerCase();
+    arr = departments
+      .filter(data2 => data2.toLowerCase().startsWith(search2Word))
+      .map(data2 => {
+        let isSelected =
+          data2 == selectBtn2.firstElementChild.innerText ? "selected" : "";
+        return `<li onclick="updateName2(this)" class="${isSelected}">${data2}</li>`;
+      })
+      .join("");
+    options2.innerHTML = arr
+      ? arr
+      : `<p style="margin-top: 10px;">Oops! Department not found</p>`;
+  });
+
+  selectBtn2.addEventListener("click", () => wrapper2.classList.toggle("active"));
+</script>
+    </body>
+    </html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="script" href="adminsettings.js">
+    <!-- Include CSS stylesheets -->
+    <style>
+        body {
+            display:"flex";
+            align-items: center;
+            justify-content: center;
+            overflow: scroll;
+            height: fit-content;
+            margin: 0;
+            position: relative;
+            background: linear-gradient(to bottom,#fff, #c8dbe6, #ddba9a);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            position: absolute;
+            left: 45%;
+            bottom: 0%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .section h2 {
+            margin-bottom: 10px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .field input[type="text"],
+        .field select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .field input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .btn {
+            height: 45px;
+            width: 100px;
+            border-radius: 20px;
+            border: 2px solid #c36f1c;
+            cursor: pointer;
+            background-color: transparent;
+            transition: 0.5s;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 3em;
+        }
+
+        .btn:hover {
+            background-color: #120c47;
+            color: #c36f1c;
+        }
+
+        .success-msg {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            border-radius: 4px;
+            color: #3c763d;
+        }
+
+        .error-msg {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            border-radius: 4px;
+            color: #a94442;
+        }
+
+        .color-picker {
+            display: flex;
+            align-items: center;
+        }
+
+        .color-picker label {
+            margin-right: 10px;
+        }
+
+        .color-picker input[type="color"] {
+            appearance: none;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .color-picker input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-picker input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 50%;
+        }
+
+        .color-picker .color-preview {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="">
+        <h1>Admin Panel</h1>
+
+        <!-- System Configuration Section -->
+        <div class="form-container">
+            <h2>System Configuration</h2>
+            <div class="listbox-group">
+                <select name="language" id="language">
+                    <option value="en">English</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                </select>
+                <label class="input-label" for="language">Language Preference:</label>
+            </div>
+            <br>
+            <div class="checkbox-group">
+                <label for="notifications">
+                    <input type="checkbox" id="notifications" name="notifications">
+                    <span class="checkmark"></span>
+                    <span class="label-text">Enable Notifications</span>
+                </label>
+            </div>
+            <br>
+            <div class="listbox-group">
+                <select name="access-control" id="access-control">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+                <label class="input-label" for="access-control">Access Control:</label>
+            </div>
+        </div>
+
+        <!-- User Management Section -->
+        <div class="form-container">
+            <h2>User Management</h2>
+            <div class="inputGroup">
+                <input type="text" id="username" name="username">
+                <label for="username">Username:</label>
+            </div>
+            <div class="inputGroup">
+                <input type="password" id="password" name="password">
+                <label for="password">Password:</label>
+            </div>
+            <div class="inputGroup">
+                <input type="email" id="email" name="email">
+                <label for="email">Email:</label>
+            </div>
+        </div>
+
+        <!-- UI Customization Section -->
+        <div class="form-container">
+            <h2>UI Customization</h2>
+            <div class="listbox-group">
+                <select name="theme" id="theme" onchange="validateColorSelection()">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+                <label class="input-label" for="theme">Theme:</label>
+            </div>
+            <div class="color-picker">
+                <label for="background-color">Background Color:</label>
+                <input type="color" id="background-color" name="background-color">
+            </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="section">
+            <button class="btn" onclick="saveSettings()">Save</button>
+        </div>
+        
+        <!-- Success and Error Messages -->
+        <div id="success-msg" class="success-msg" style="display: none;">
+            Settings saved successfully!
+        </div>
+        <div id="error-msg" class="error-msg" style="display: none;">
+            The selected color does not match the theme. Did you mean <span id="suggested-theme"></span>?
+        </div>
+
+        <!-- Include JavaScript code -->
+        <script>
+            function saveSettings() {
+                var theme = document.getElementById("theme").value;
+                var backgroundColor = document.getElementById("background-color").value;
+                var errorBox = document.getElementById("error-msg");
+                var successBox = document.getElementById("success-msg");
+                var suggestedTheme = document.getElementById("suggested-theme");
+
+                if (theme === "light" && backgroundColor !== "#ffffff") {
+                    errorBox.style.display = "block";
+                    suggestedTheme.textContent = "dark";
+                    successBox.style.display = "none";
+                } else if (theme === "dark" && backgroundColor === "#ffffff") {
+                    errorBox.style.display = "block";
+                    suggestedTheme.textContent = "light";
+                    successBox.style.display = "none";
+                } else {
+                    errorBox.style.display = "none";
+                    successBox.style.display = "block";
+                    // Perform save operation (you can add your backend logic here)
+                }
+            }
+
+            function validateColorSelection() {
+                var errorBox = document.getElementById("error-msg");
+                errorBox.style.display = "none";
+            }
+        </script>
+        <script src="./adminsettings.js"></script>
+    </div>
+</body>
+
+</html>

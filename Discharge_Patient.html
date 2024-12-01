@@ -1,0 +1,197 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title> Discharge Patient Form</title>
+    <link rel="stylesheet" href=" Discharge_Patient.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Iconscout Link For Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+        .input-group-text {
+        position: relative;
+        }
+
+        .error-icon,
+        .success-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none;
+        }
+
+        .input-group.invalid .error-icon {
+        display: block;
+        }
+
+        .input-group.valid .success-icon {
+        display: block;
+        }
+
+        .form-control:invalid {
+        border-color: #dc3545;
+        }
+
+        .form-control:valid {
+        border-color: #198754;
+        }
+
+        .listbox-group select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url('path-to-your-custom-arrow-icon.png');
+        background-repeat: no-repeat;
+        background-position: right center;
+        padding-right: 20px;
+        }
+
+        .inputGroup textarea {
+        resize: vertical;
+        padding-top: 35px;
+        min-width: 250px;
+        background-color: transparent;
+        }
+
+        textarea:invalid {
+        border-color: red;
+        }
+
+        textarea:valid {
+        border-color: green;
+        }
+
+        .input-container {
+        position: relative;
+        }
+
+        .input-indicator {
+        position: absolute;
+        top: 5%;
+        right: -25%;
+        color: red;
+        display: none;
+        }
+
+        .input-indicator.valid {
+        color: green;
+        }
+
+        .input-indicator.invalid {
+        color: red;
+        }
+
+    </style>
+    </head>
+    <body>
+    <div class="form-container">
+        <h2> Discharge Patient Form</h2>
+        <form id="dischargePatientform" class="form">
+
+        <div class="inputGroup">
+            <input type="text" id="patient_ID" required="" autocomplete="off">    
+            <label for="patient_ID">Patient ID</label>
+        </div> 
+
+        <div class="inputGroup">
+            <input type="date" id="dateInput" required>
+            <label for="dateInput">DOJ</label>
+        </div>
+
+        <div class="inputGroup">
+            <input type="number" id="contact_no" required="" autocomplete="off">    
+            <label for="contact_no">Contact No</label>
+        </div>
+
+        <div class="submit">
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset" class="reset-button">
+        </div>
+
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        const textarea = document.getElementById('bio');
+        const indicator = document.querySelector('.input-indicator');
+        indicator.style.display = 'block';
+        indicator.innerHTML = '<i class="fas fa-times"></i>';
+        textarea.addEventListener('input', function() {
+        if (textarea.value.trim() === '') {
+            indicator.style.display = 'block';
+            indicator.innerHTML = '<i class="fas fa-times"></i>';
+            indicator.classList.add('invalid');
+            indicator.classList.remove('valid');
+        } else {
+            indicator.style.display = 'block';
+            indicator.innerHTML = '<i class="fas fa-check"></i>';
+            indicator.classList.add('valid');
+            indicator.classList.remove('invalid'); 
+        }
+        });
+    </script>
+    <script>
+        const dischargePatientform = document.getElementById('dischargePatientform');
+        const tableBody = document.getElementById('tableBody');
+
+        dischargePatientform.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const bio = document.getElementById('bio').value;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const skills = Array.from(document.querySelectorAll('input[name="skills"]:checked')).map(skill => skill.value);
+        const position = document.getElementById('position').value;
+        const salary = document.getElementById('salary').value;
+        const employmentType = document.getElementById('employmentType').value;
+        const status = document.getElementById('status').value;
+        const fileInput = document.getElementById('fileInput').value;
+        const dateInput = document.getElementById('dateInput').value;
+        const timeInput = document.getElementById('timeInput').value;
+
+        const newRow = tableBody.insertRow();
+
+        const nameCell = newRow.insertCell();
+        const emailCell = newRow.insertCell();
+        const passwordCell = newRow.insertCell();
+        const bioCell = newRow.insertCell();
+        const genderCell = newRow.insertCell();
+        const skillsCell = newRow.insertCell();
+        const hobbiesCell = newRow.insertCell();
+        const departmentCell = newRow.insertCell();
+        const positionCell = newRow.insertCell();
+        const salaryCell = newRow.insertCell();
+        const employmentTypeCell = newRow.insertCell();
+        const statusCell = newRow.insertCell();
+        const fileCell = newRow.insertCell();
+        const dateCell = newRow.insertCell();
+        const timeCell = newRow.insertCell();
+
+        nameCell.innerHTML = name;
+        emailCell.innerHTML = email;
+        passwordCell.innerHTML = password;
+        bioCell.innerHTML = bio;
+        genderCell.innerHTML = gender;
+        skillsCell.innerHTML = skills.join(', ');
+        hobbiesCell.innerHTML = hobbies.join(', ');
+        departmentCell.innerHTML = department;
+        positionCell.innerHTML = position;
+        salaryCell.innerHTML = salary;
+        employmentTypeCell.innerHTML = employmentType;
+        statusCell.innerHTML = status;
+        fileCell.innerHTML = fileInput;
+        dateCell.innerHTML = dateInput;
+        timeCell.innerHTML = timeInput;
+
+        dischargePatientform.reset();
+        });
+    </script>
+    </body>
+    </html>

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Dashboard using HTML CSS and JavaScript</title>
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<style>
+    .body {
+        height: 100%;
+        overflow-y: hidden;
+        padding-bottom: 0%;
+    }
+
+    .welcome {
+        background-color: #d7f5fa;
+  border: 2px solid #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  font-size: 16px;
+  margin-bottom: 20px;
+  position: absolute;
+            left: 45%;
+            top: 25%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+    }
+    
+</style>
+<body>
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="./images/SIMSL.png">
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons">
+                        close
+                    </span>
+                </div>
+            </div>
+            <div class="sidebar">
+                <!--a href="#" data-page="home" id="dashboard-link" class="active">
+                    <span class="material-icons">
+                        home
+                    </span>
+                    <h3>Home</h3>
+                </a-->
+                                
+                <a href="dashboard.html" data-page="dash-board">
+                    <span class="material-icons">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                </a>
+                <a href="Add_New_User.html" data-page="add-user" id="dashboard-link" class="active">
+                    <span class="material-icons">
+                        person_add
+                    </span>
+                    <h3>Add User</h3>
+                </a>
+                <a href="Remove_User.html" data-page="remove-user" id="dashboard-link" class="active">
+                    <span class="material-icons">
+                        person_remove
+                    </span>
+                    <h3>Remove User</h3>
+                </a>
+                <a href="employeeform.html" data-page="employee-form" id="dashboard-link" class="active">
+                    <span class="material-icons">
+                        dashboard
+                    </span>
+                    <h3>Employee Form</h3>
+                </a>
+                <a href="patientrecords.html" data-page="patient-records" id="dashboard-link" class="active">
+                    <span class="material-icons">
+                        dashboard
+                    </span>
+                    <h3>Patient Records</h3>
+                </a>
+                <a href="roomdetails.html" data-page="room-details" id="dashboard-link" class="active">
+                    <span class="material-icons">
+                        dashboard
+                    </span>
+                    <h3>Room Details</h3>
+                </a>
+                <a href="labappointments.html" data-page="lab-appointments" id="dashboard-link" class="active">
+                    <span class="material-icons">
+                        dashboard
+                    </span>
+                    <h3>Lab Appointments</h3>
+                </a>
+                <a href="adminsettings.html" data-page="admin-settings" id="dashboard-link" class="active">
+                    <span class="material-icons">
+                        dashboard
+                    </span>
+                    <h3>Admin Settings</h3>
+                </a>
+                <!--a href="#" data-page="message">
+                    <span class="material-icons">
+                        mail_outline
+                    </span>
+                    <h3>Message</h3>
+                    <span class="message-count">26</span>
+                </a-->
+                <a href="#" data-page="logout">
+                    <span class="material-icons">
+                        logout
+                    </span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main id="dashboard-content">
+            <div class="form-container">
+                <div class="welcome">
+                Hello There~<br>
+                Welcome to the Page!</div>
+            </div>
+        </main>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons">
+                        menu
+                    </span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons active">light_mode</span>
+                    <span class="material-icons">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>User</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="./images/profileL.png">
+                    </div>
+                </div>
+            </div>
+
+            <div class="recent-updates">
+                <h2>Recent Updates</h2>
+                <div class="updates">
+                    <div class="update">
+                        <div class="profile-photo">
+                            <img src="./images/profileD.png">
+                        </div>
+                        <div class="message">
+                            <p><b>Person</b> The Message</p>
+                            <small class="text-muted">Time ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-analytics">
+                <h2>Analytics</h2>
+                <div class="item online">
+                    <div class="icon">
+                        <span class="material-icons">shopping_cart</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Active</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+                        <h5 class="success">00%</h5>
+                        <h3>0000</h3>
+                    </div>
+                </div>
+                <div class="item offline">
+                    <div class="icon">
+                        <span class="material-icons">shopping_cart</span>
+                    </div>
+                    <div class="right">
+                        <div class="info">
+                            <h3>Dormant</h3>
+                            <small class="text-muted">Last 24 Hours</small>
+                        </div>
+                        <h5 class="danger">00%</h5>
+                        <h3>0000</h3>
+                    </div>
+                </div>
+                <div class="item add-entity"> 
+                    <div>
+                        <span class="material-icons">add</span>
+                        <h3>Add</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the dashboard link
+const dashboardLink = document.getElementById('dashboard-link');
+
+// Event listener for the dashboard link
+dashboardLink.addEventListener('click', (event) => {
+  event.preventDefault();
+
+  // Add the active class to the dashboard link and remove it from other links
+  sidebarLinks.forEach(link => {
+    link.classList.remove('active');
+    //link.classList.remove('active');
+  });
+  dashboardLink.classList.add('active');
+  //dashboardLink.classList.remove('active');
+  // Show the dashboard content
+  dashboardContent.style.display = 'unblock';
+});
+
+// Function to fetch page content
+function fetchPageContent(page) {
+  // Create a mapping of page names to their respective HTML file paths
+  const pagePaths = {
+    'dash-board': 'dashboard.html',
+    'add-user': 'add_new_user.html',
+    'remove-user': 'remove_user.html',
+    'employee-form': 'employeeform.html',
+    'patient-records': 'patientrecords.html',
+    'room-details': 'roomdetails.html',
+    'lab-appointments': 'labappointments.html',
+    'admin-settings': 'adminsettings.html',
+    message: '#',
+    logout: '#'
+  };
+
+  // Check if the page is set to "dashboard"
+  if (page === 'home') {
+    console.log(page)
+    // Return the existing dashboard content
+    console.log(dashboardContent)
+    dashboardContent = innerHTML
+    return Promise.resolve(dashboardContent);
+  }
+
+  // Fetch the page content based on the page name
+  return fetch(pagePaths[page])
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch page content');
+      }
+      return response.text();
+    });
+}
+
+// Get the sidebar links
+const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+// Get the dashboard content element
+const dashboardContent = document.getElementById('dashboard-content');
+
+// Event listener for sidebar link clicks
+sidebarLinks.forEach(link => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Remove active class from the previous active link
+    const activeLink = document.querySelector('.sidebar a.active');
+    activeLink.classList.remove('active');
+
+    // Add active class to the clicked link
+    link.classList.add('active');
+
+    // Get the data-page attribute value
+    const page = link.getAttribute('data-page');
+
+    // Fetch and load the page content
+    fetchPageContent(page)
+      .then(content => {
+        // Update the dashboard content with the fetched page content
+        dashboardContent.innerHTML = content;
+      })
+      .catch(error => {
+        console.log('Error loading page:', error);
+      });
+  });
+});
+
+document.addEventListener('click', (event) => {
+  const clickedElement = event.target;
+
+  // Check if the clicked element is inside the dashboard content or sidebar
+  if (!dashboardContent.contains(clickedElement) && !sidebar.contains(clickedElement)) {
+    // Clear the dashboard content
+    dashboardContent.innerHTML = '';
+  }
+});
+
+const sideMenu = document.querySelector("aside");
+const menuBtn = document.querySelector("#menu-btn");
+const closeBtn = document.querySelector("#close-btn"); // Typo: should be closeBtn instead of close=btn
+const themeToggler = document.querySelector(".theme-toggler");
+
+menuBtn.addEventListener('click', () => {
+    sideMenu.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', () => {
+    sideMenu.style.display = 'none';
+});
+
+themeToggler.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme-variables');
+
+    themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
+    themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
+});
+
+
+//lab appointment
+        function showTab(event, tabId) {
+            event.preventDefault();
+
+            var tabs = document.getElementsByClassName("tab");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+
+            var tabContent = document.getElementById(tabId);
+            tabContent.classList.add("active");
+        }
+
+        function saveAppointment(event) {
+    event.preventDefault();
+
+    var patientName = document.getElementById("patient-name").value;
+    var appointmentDate = document.getElementById("appointment-date").value;
+    var appointmentTime = document.getElementById("appointment-time").value;
+    var selectedDoctor = document.getElementById("doctor").value;
+    var selectedLab = document.getElementById("lab").value;
+    var selectedStatus = document.getElementById("status").value;
+
+    var isExistingAppointment = upcomingAppointments.some(function (appointment) {
+        return (
+            appointment.patient === patientName &&
+            appointment.date === appointmentDate &&
+            appointment.time === appointmentTime &&
+            appointment.doctor === selectedDoctor &&
+            appointment.lab === selectedLab
+        );
+    });
+
+    var hasClash = upcomingAppointments.some(function (appointment) {
+        return (
+            appointment.date === appointmentDate &&
+            appointment.time === appointmentTime &&
+            appointment.doctor === selectedDoctor &&
+            appointment.lab === selectedLab
+        );
+    });
+
+    var newAppointmentForm = document.getElementById("new-content");
+    var successMsg = document.getElementById("success-msg");
+    var errorMsg = document.getElementById("error-msg");
+
+    if (isExistingAppointment || hasClash) {
+        errorMsg.textContent = "Appointment clashes with an existing appointment.";
+        errorMsg.style.display = "block";
+        successMsg.style.display = "none";
+    } else {
+        var appointmentDetails = {
+            patient: patientName,
+            date: appointmentDate,
+            time: appointmentTime,
+            doctor: selectedDoctor,
+            lab: selectedLab,
+            status: selectedStatus
+        };
+
+        upcomingAppointments.push(appointmentDetails);
+        updateUpcomingAppointments();
+
+        successMsg.textContent = "Appointment saved successfully!";
+        successMsg.style.display = "block";
+        errorMsg.style.display = "none";
+
+        // Clear form fields
+        document.getElementById("patient-name").value = "";
+        document.getElementById("appointment-date").value = "";
+        document.getElementById("appointment-time").value = "";
+        document.getElementById("doctor").value = "";
+        document.getElementById("lab").value = "";
+        document.getElementById("status").value = "";
+    }
+
+    // Scroll to top of the page
+    window.scrollTo(0, 0);
+}
+
+
+function updateUpcomingAppointments() {
+    var upcomingContent = document.getElementById("upcoming-content");
+    upcomingContent.innerHTML = "";
+
+    upcomingAppointments.forEach(function (appointment) {
+        var appointmentDetails = document.createElement("div");
+        appointmentDetails.innerHTML = `
+            <h3>${appointment.patient}</h3>
+            <p>Date: ${appointment.date}</p>
+            <p>Time: ${appointment.time}</p>
+            <p>Doctor: ${appointment.doctor}</p>
+            <p>Lab: ${appointment.lab}</p>
+            <p>Status: ${appointment.status}</p>
+            <hr>
+        `;
+        upcomingContent.appendChild(appointmentDetails);
+    });
+}
+
+
+        function getExistingAppointments() {
+            var existingAppointments = localStorage.getItem("labAppointments");
+            return existingAppointments ? JSON.parse(existingAppointments) : [];
+        }
+
+        function saveExistingAppointments(appointments) {
+            localStorage.setItem("labAppointments", JSON.stringify(appointments));
+        }
+
+        // Populate Upcoming Appointments
+var upcomingContent = document.getElementById("upcoming-content");
+var upcomingAppointments = [
+    {
+        patient: "John Smith",
+        date: "2023-07-10",
+        time: "10:00 AM",
+        doctor: "Dr. Johnson",
+        lab: "Lab A",
+        status: "Confirmed"
+    },
+    {
+        patient: "Jane Doe",
+        date: "2023-07-12",
+        time: "2:30 PM",
+        doctor: "Dr. Wilson",
+        lab: "Lab B",
+        status: "Confirmed"
+    },
+    {
+        patient: "Mike Brown",
+        date: "2023-07-15",
+        time: "9:00 AM",
+        doctor: "Dr. Smith",
+        lab: "Lab C",
+        status: "Pending"
+    }
+];
+
+upcomingAppointments.forEach(function (appointment) {
+    var appointmentDetails = document.createElement("div");
+    appointmentDetails.innerHTML = `
+        <h3>${appointment.patient}</h3>
+        <p>Date: ${appointment.date}</p>
+        <p>Time: ${appointment.time}</p>
+        <p>Doctor: ${appointment.doctor}</p>
+        <p>Lab: ${appointment.lab}</p>
+        <p>Status: ${appointment.status}</p>
+        <hr>
+    `;
+    upcomingContent.appendChild(appointmentDetails);
+});
+
+        // Populate Appointment History
+        var historyContent = document.getElementById("history-content");
+        var appointmentHistory = [
+            {
+                patient: "John Smith",
+                date: "2023-07-05",
+                time: "11:30 AM",
+                doctor: "Dr. Johnson",
+                lab: "Lab A",
+                status: "Completed"
+            },
+            {
+                patient: "Jane Doe",
+                date: "2023-07-07",
+                time: "3:00 PM",
+                doctor: "Dr. Wilson",
+                lab: "Lab B",
+                status: "Completed"
+            },
+            {
+                patient: "Mike Brown",
+                date: "2023-07-09",
+                time: "8:30 AM",
+                doctor: "Dr. Smith",
+                lab: "Lab C",
+                status: "Completed"
+            }
+        ];
+
+        appointmentHistory.forEach(function (appointment) {
+            var appointmentDetails = document.createElement("div");
+            appointmentDetails.innerHTML = `
+                <h3>${appointment.patient}</h3>
+                <p>Date: ${appointment.date}</p>
+                <p>Time: ${appointment.time}</p>
+                <p>Doctor: ${appointment.doctor}</p>
+                <p>Lab: ${appointment.lab}</p>
+                <p>Status: ${appointment.status}</p>
+                <hr>
+            `;
+            historyContent.appendChild(appointmentDetails);
+        });
+
+
+//patient records
+// Hardcoded patient data
+var patients = [
+    {
+        id: 1,
+        name: "John Doe",
+        age: 35,
+        gender: "Male",
+        address: "123 Main St",
+        phone: "555-1234",
+        email: "john@example.com",
+        bloodType: "A+",
+        height: "175 cm",
+        weight: "70 kg",
+        allergies: "Pollen",
+        medicalConditions: "Asthma",
+        medications: "Aspirin",
+        lastVisit: "2022-06-15",
+        nextAppointment: "2022-07-10"
+    },
+    {
+        id: 2,
+        name: "Jane Smith",
+        age: 42,
+        gender: "Female",
+        address: "456 Oak St",
+        phone: "555-5678",
+        email: "jane@example.com",
+        bloodType: "O-",
+        height: "160 cm",
+        weight: "60 kg",
+        allergies: "Penicillin",
+        medicalConditions: "Diabetes",
+        medications: "Insulin",
+        lastVisit: "2022-05-20",
+        nextAppointment: "2022-08-05"
+    }
+    // Add more patient objects here
+];
+
+function populateTable() {
+    var table = document.getElementById("patientTable");
+
+    patients.forEach(function(patient) {
+        var row = table.insertRow();
+
+        var idCell = row.insertCell();
+        idCell.textContent = patient.id;
+
+        var nameCell = row.insertCell();
+        nameCell.textContent = patient.name;
+
+        var ageCell = row.insertCell();
+        ageCell.textContent = patient.age;
+
+        var genderCell = row.insertCell();
+        genderCell.textContent = patient.gender;
+
+        var addressCell = row.insertCell();
+        addressCell.textContent = patient.address;
+
+        var phoneCell = row.insertCell();
+        phoneCell.textContent = patient.phone;
+
+        var emailCell = row.insertCell();
+        emailCell.textContent = patient.email;
+
+        var bloodTypeCell =row.insertCell();
+        bloodTypeCell.textContent = patient.bloodType;
+
+        var heightCell = row.insertCell();
+        heightCell.textContent = patient.height;
+
+        var weightCell = row.insertCell();
+        weightCell.textContent = patient.weight;
+
+        var allergiesCell = row.insertCell();
+        allergiesCell.textContent = patient.allergies;
+
+        var medicalConditionsCell = row.insertCell();
+        medicalConditionsCell.textContent = patient.medicalConditions;
+
+        var medicationsCell = row.insertCell();
+        medicationsCell.textContent = patient.medications;
+
+        var lastVisitCell = row.insertCell();
+        lastVisitCell.textContent = patient.lastVisit;
+
+        var nextAppointmentCell = row.insertCell();
+        nextAppointmentCell.textContent = patient.nextAppointment;
+    });
+}
+
+populateTable();
+
+function searchTable() {
+    var input, filter, table, tr, td, i, txtValue, noResultsMessage;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("patientTable");
+    tr = table.getElementsByTagName("tr");
+    noResultsMessage = document.getElementById("noResultsMessage");
+
+    var foundMatch = false;
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1]; // Index 1 is the name column
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().includes(filter)) {
+                tr[i].style.display = "";
+                foundMatch = true;
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+
+    if (foundMatch) {
+        noResultsMessage.style.display = "none";
+    } else {
+        noResultsMessage.style.display = "block";
+    }
+}
+
+function filterByAge() {
+    var ageRange = document.getElementById("ageRange");
+    var ageValue = document.getElementById("ageValue");
+
+    ageValue.textContent = ageRange.value;
+
+    var table = document.getElementById("patientTable");
+    var tr = table.getElementsByTagName("tr");
+
+    for (var i = 0; i < tr.length; i++) {
+        var td = tr[i].getElementsByTagName("td")[2]; // Index 2 is the age column
+        if (td) {
+            var age = parseInt(td.textContent || td.innerText);
+            if (age <= ageRange.value) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+//adminsettings
+
+function saveSettings() {
+    var theme = document.getElementById("theme").value;
+    var backgroundColor = document.getElementById("background-color").value;
+    var errorBox = document.getElementById("error-msg");
+    var successBox = document.getElementById("success-msg");
+    var suggestedTheme = document.getElementById("suggested-theme");
+
+    if (theme === "light" && backgroundColor !== "#ffffff") {
+        errorBox.style.display = "block";
+        suggestedTheme.textContent = "dark";
+        successBox.style.display = "none";
+    } else if (theme === "dark" && backgroundColor === "#ffffff") {
+        errorBox.style.display = "block";
+        suggestedTheme.textContent = "light";
+        successBox.style.display = "none";
+    } else {
+        errorBox.style.display = "none";
+        successBox.style.display = "block";
+        // Perform save operation (you can add your backend logic here)
+    }
+}
+
+function validateColorSelection() {
+    var errorBox = document.getElementById("error-msg");
+    errorBox.style.display = "none";
+}
+
+//room details
+
+        // Hardcoded room details
+        var roomDetails = [
+            {
+                roomType: "sharing",
+                occupancyStatus: "occupied",
+                patientDetails: "John Doe",
+                checkInTime: "2022-06-15 10:00 AM",
+                checkOutTime: "2022-06-20 11:00 AM",
+                queries: ["Issue with AC", "Additional pillow request"]
+            },
+            {
+                roomType: "nonsharing",
+                occupancyStatus: "unoccupied",
+                patientDetails: "",
+                checkInTime: "",
+                checkOutTime: "",
+                queries: []
+            },
+            {
+                roomType: "ac",
+                occupancyStatus: "occupied",
+                patientDetails: "Jane Smith",
+                checkInTime: "2022-06-18 02:00 PM",
+                checkOutTime: "2022-06-25 12:00 PM",
+                queries: ["Room cooling issue"]
+            },
+            {
+                roomType: "nonac",
+                occupancyStatus:"occupied",
+                patientDetails: "Michael Johnson",
+                checkInTime: "2022-06-10 08:00 AM",
+                checkOutTime: "2022-06-22 10:00 AM",
+                queries: []
+            }
+        ];
+
+        function displayRoomDetails() {
+            var sharingCheckbox = document.getElementById("sharingCheckbox");
+            var nonsharingCheckbox = document.getElementById("nonsharingCheckbox");
+            var acCheckbox = document.getElementById("acCheckbox");
+            var nonacCheckbox = document.getElementById("nonacCheckbox");
+
+            var selectedRoomTypes = [];
+            if (sharingCheckbox.checked) selectedRoomTypes.push(sharingCheckbox.value);
+            if (nonsharingCheckbox.checked) selectedRoomTypes.push(nonsharingCheckbox.value);
+            if (acCheckbox.checked) selectedRoomTypes.push(acCheckbox.value);
+            if (nonacCheckbox.checked) selectedRoomTypes.push(nonacCheckbox.value);
+
+            var table = document.getElementById("roomDetailsTable");
+
+            // Clear previous table rows
+            clearTableRows(table);
+
+            // Populate table with room details
+            roomDetails.forEach(function(room) {
+                if (selectedRoomTypes.includes(room.roomType)) {
+                    var row = table.insertRow();
+
+                    var roomTypeCell = row.insertCell();
+                    roomTypeCell.textContent = room.roomType;
+
+                    var occupancyStatusCell = row.insertCell();
+                    occupancyStatusCell.textContent = room.occupancyStatus;
+
+                    var patientDetailsCell = row.insertCell();
+                    patientDetailsCell.textContent = room.patientDetails;
+
+                    var checkInTimeCell = row.insertCell();
+                    checkInTimeCell.textContent = room.checkInTime;
+
+                    var checkOutTimeCell = row.insertCell();
+                    checkOutTimeCell.textContent = room.checkOutTime;
+
+                    var queriesCell = row.insertCell();
+                    if (room.queries.length > 0) {
+                        var queriesCount = room.queries.length;
+                        var queriesText = document.createElement("span");
+                        queriesText.classList.add("queries");
+                        queriesText.textContent = queriesCount;
+                        queriesText.addEventListener("click", function() {
+                            showMessageBox(room.queries);
+                        });
+                        queriesCell.appendChild(queriesText);
+                    } else {
+                        queriesCell.textContent = "-";
+                    }
+                }
+            });
+        }
+
+        function clearTableRows(table) {
+            var rowCount = table.rows.length;
+            for (var i = rowCount - 1; i > 0; i--) {
+                table.deleteRow(i);
+            }
+        }
+
+        function showMessageBox(queries) {
+            var messageBox = document.getElementById("messageBox");
+            var messageList = document.getElementById("messageList");
+
+            // Clear previous messages
+            messageList.innerHTML = "";
+
+            // Add queries to message list
+            queries.forEach(function(query) {
+                var listItem = document.createElement("li");
+                listItem.textContent = query;
+                messageList.appendChild(listItem);
+            });
+
+            // Show message box
+            messageBox.style.display = "block";
+        }
+
+        function hideMessageBox() {
+            var messageBox = document.getElementById("messageBox");
+            messageBox.style.display = "none";
+        }
+
+
+      </script>
+    <script src="./index.js"></script>
+    <!--script src="labappointments.js"></script-->
+    <!--script src="./patientrecords.js"></script-->
+    <script src="./roomdetails.js"></script>
+    <script src="./adminsettings.html"></script>
+</body>
+</html>

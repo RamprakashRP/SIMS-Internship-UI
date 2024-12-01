@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Information Form</title>
+  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Iconscout Link For Icons -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+      body{
+        overflow: auto;
+      }
+
+      .table-container {
+        width: 700px;
+      }
+      .input-group-text {
+      position: relative;
+      }
+
+      .error-icon,
+      .success-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: none;
+      }
+
+      .input-group.invalid .error-icon {
+      display: block;
+      }
+
+      .input-group.valid .success-icon {
+      display: block;
+      }
+
+      .form-control:invalid {
+      border-color: #dc3545;
+      }
+
+      .form-control:valid {
+      border-color: #198754;
+      }
+
+      .listbox-group select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-image: url('path-to-your-custom-arrow-icon.png');
+      background-repeat: no-repeat;
+      background-position: right center;
+      padding-right: 20px;
+      }
+
+      .inputGroup textarea {
+      resize: vertical;
+      padding-top: 35px;
+      min-width: 250px;
+      background-color: transparent;
+      }
+
+      textarea:invalid {
+      border-color: red;
+      }
+
+      textarea:valid {
+      border-color: green;
+      }
+
+      .input-container {
+      position: relative;
+      }
+
+      .input-indicator {
+      position: absolute;
+      top: 5%;
+      right: -25%;
+      color: red;
+      display: none;
+      }
+
+      .input-indicator.valid {
+      color: green;
+      }
+
+      .input-indicator.invalid {
+      color: red;
+      }
+
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Employee Information Form:</h2>
+    <form id="employeeForm" class="form">
+
+      <div class="inputGroup">
+        <input type="text" id="name" required="" autocomplete="off">
+        <label for="name">Name</label>
+      </div>
+
+      <div class="inputGroup">
+        <input type="email" id="email" required="" autocomplete="off">
+        <label for="email">Email</label>
+      </div>
+
+      <div class="inputGroup">
+        <input type="password" id="password" required="" autocomplete="off">
+        <label for="password">Password</label>
+      </div>
+
+      <div class="inputGroup">
+        <textarea id="bio" rows="4" cols="30" required></textarea>
+        <label for="bio">Bio</label>
+        <span class="input-indicator"><i class="fas fa-times"></i></span>
+      </div>      
+
+      <label for="gender">Gender:</label>
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="gender" value="male" checked>
+          <span>Male</span>
+        </label>
+        <label>
+          <input type="radio" name="gender" value="female">
+          <span>Female</span>
+        </label>
+      </div>
+
+      <label for="skills">Skills:</label>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="skill1" name="skills" value="skill1">
+          <span class="checkmark"></span>
+          Skill 1
+        </label>
+      </div>
+
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="skill2" name="skills" value="skill2">
+          <span class="checkmark"></span>
+          Skill 2
+        </label>
+      </div>
+
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" id="skill3" name="skills" value="skill3">
+          <span class="checkmark"></span>
+          Skill 3
+        </label>
+      </div>
+
+      <div class="listbox-group1">
+        <select id="hobbies" name="hobbies" required multiple>
+          <div class="options">
+          <option value="0" disabled selected>Select Any</option>
+          <option value="hobby1">Hobby 1</option>
+          <option value="hobby2">Hobby 2</option>
+          <option value="hobby3">Hobby 3</option>
+          <option value="hobby4">Hobby 4</option>
+          </div>
+        </select>
+        <label class="input-label" for="hobbies">Hobbies</label>
+      </div>
+
+      <div class="listbox-group">
+        <select id="department" name="department" required>
+          <option value="" disabled selected></option>
+          <option value="department1">Department 1</option>
+          <option value="department2">Department 2</option>
+          <option value="department3">Department 3</option>
+        </select>
+        <label class="input-label" for="department">Department</label>
+      </div>
+
+      <div class="inputGroup">
+        <input type="text" id="position" required="" required autocomplete="off">
+        <label for="position">Position</label>
+      </div>
+
+      <div class="inputGroup">
+        <input type="number" id="salary" required="" required autocomplete="off">
+        <label for="salary">Salary</label>
+      </div>
+
+      <div class="wrapper">
+        <div class="select-btn">
+          <span>Select Country</span>
+          <i class="uil uil-angle-down"></i>
+        </div>
+        <div class="content">
+          <div class="search">
+            <i class="uil uil-search"></i>
+            <input spellcheck="false" type="text" placeholder="Search">
+          </div>
+          <ul class="options"></ul>
+        </div>
+      </div>
+
+      <div class="listbox-group">
+        <select id="employmentType" name="employmentType" required>
+          <option value="" disabled selected></option>
+          <option value="fullTime">Full-time</option>
+          <option value="partTime">Part-time</option>
+          <option value="contract">Contract</option>
+        </select>
+        <label class="input-label" for="employmentType">Employment Type</label>
+      </div>
+
+      <div class="listbox-group">
+        <select id="status" name="status" required>
+          <option value="" disabled selected></option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+        <label class="input-label" for="status">Status</label>
+      </div>
+
+      <div class="inputGroup">
+        <input type="file" id="fileInput">
+        <label for="fileInput">File</label>
+      </div>
+
+      <div class="inputGroup">
+        <input type="date" id="dateInput" required>
+        <label for="dateInput">Date</label>
+      </div>
+
+      <div class="inputGroup">
+        <input type="time" id="timeInput" required pattern="\d{2}-\d{2}-\d{2}">
+        <label for="timeInput">Time</label>
+      </div>
+
+      <!-- Switch -->
+      <input type="checkbox" name="checkbox" id="toggle" value="switch">
+      <label for="toggle" class="switch">
+        <span class="switch-text"></span>
+      </label>
+
+      <div class="submit">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset" class="reset-button">
+      </div>
+
+    </form>
+  </div>
+  
+  <div class="table-container">
+    <h2>Employee Data:</h2>
+    <table id="employeeTable" class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Bio</th>
+          <th>Gender</th>
+          <th>Skills</th>
+          <th>Hobbies</th>
+          <th>Department</th>
+          <th>Position</th>
+          <th>Salary</th>
+          <th>Employment Type</th>
+          <th>Status</th>
+          <th>File</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Country</th>
+          <th>Switch</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script>
+    const textarea = document.getElementById('bio');
+    const indicator = document.querySelector('.input-indicator');
+    indicator.style.display = 'block';
+    indicator.innerHTML = '<i class="fas fa-times"></i>';
+    textarea.addEventListener('input', function() {
+      if (textarea.value.trim() === '') {
+        indicator.style.display = 'block';
+        indicator.innerHTML = '<i class="fas fa-times"></i>';
+        indicator.classList.add('invalid');
+        indicator.classList.remove('valid');
+      } else {
+        indicator.style.display = 'block';
+        indicator.innerHTML = '<i class="fas fa-check"></i>';
+        indicator.classList.add('valid');
+        indicator.classList.remove('invalid'); 
+      }
+    });
+  </script>
+  <!--script>
+    // Get the current date and time
+    //const currentDate = new Date();
+    //const currentDateString = currentDate.toISOString().split('T')[0];
+    //const currentTimeString = currentDate.toTimeString().split(' ')[0];
+
+    // Set the default values of the date and time inputs
+    //document.getElementById('dateInput').value = currentDateString;
+    //document.getElementById('timeInput').value = currentTimeString;
+  </script-->
+  <script>
+    const employeeForm = document.getElementById('employeeForm');
+    const tableBody = document.getElementById('tableBody');
+    const wrapper = document.querySelector(".wrapper");
+    const selectBtn = wrapper.querySelector(".select-btn");
+    const searchInp = wrapper.querySelector("input");
+    const options = wrapper.querySelector(".options");
+  
+    let countries = ["Afghanistan", "Algeria", "Argentina", "Australia", "Bangladesh", "Belgium", "Bhutan",
+      "Brazil", "Canada", "China", "Denmark", "Ethiopia", "Finland", "France", "Germany",
+      "Hungary", "Iceland", "India", "Indonesia", "Iran", "Italy", "Japan", "Malaysia",
+      "Maldives", "Mexico", "Morocco", "Nepal", "Netherlands", "Nigeria", "Norway", "Pakistan",
+      "Peru", "Russia", "Romania", "South_Africa", "Spain", "Sri_Lanka", "Sweden", "Switzerland",
+      "Thailand", "Turkey", "Uganda", "Ukraine", "United_States", "United_Kingdom", "Vietnam"];
+  
+    function addCountry(selectedCountry) {
+      options.innerHTML = "";
+      countries.forEach(country => {
+        let isSelected = country == selectedCountry ? "selected" : "";
+        let li = `<li onclick="updateName(this)" class="${isSelected}">${country}</li>`;
+        options.insertAdjacentHTML("beforeend", li);
+      });
+    }
+    addCountry();
+  
+    function updateName(selectedLi) {
+      searchInp.value = "";
+      addCountry(selectedLi.innerText);
+      wrapper.classList.remove("active");
+      selectBtn.firstElementChild.innerText = selectedLi.innerText;
+    }
+  
+    searchInp.addEventListener("keyup", () => {
+      let arr = [];
+      let searchWord = searchInp.value.toLowerCase();
+      arr = countries
+        .filter(data => {
+          return data.toLowerCase().startsWith(searchWord);
+        })
+        .map(data => {
+          let isSelected = data == selectBtn.firstElementChild.innerText ? "selected" : "";
+          return `<li onclick="updateName(this)" class="${isSelected}">${data}</li>`;
+        })
+        .join("");
+      options.innerHTML = arr ? arr : `<p style="margin-top: 10px;">Oops! Country not found</p>`;
+    });
+  
+    selectBtn.addEventListener("click", () => wrapper.classList.toggle("active"));
+  
+    employeeForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+  
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const bio = document.getElementById('bio').value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const skills = Array.from(document.querySelectorAll('input[name="skills"]:checked')).map(skill => skill.value);
+      const hobbies = Array.from(document.getElementById('hobbies').selectedOptions).map(option => option.value);
+      const department = document.getElementById('department').value;
+      const position = document.getElementById('position').value;
+      const salary = document.getElementById('salary').value;
+      const employmentType = document.getElementById('employmentType').value;
+      const status = document.getElementById('status').value;
+      const fileInput = document.getElementById('fileInput').value;
+      const dateInput = document.getElementById('dateInput').value;
+      const timeInput = document.getElementById('timeInput').value;
+      const countryInput = selectBtn.firstElementChild.innerText;
+      const switchInput = document.getElementById('toggle').checked;
+  
+      const newRow = tableBody.insertRow();
+  
+      const nameCell = newRow.insertCell();
+      const emailCell = newRow.insertCell();
+      const passwordCell = newRow.insertCell();
+      const bioCell = newRow.insertCell();
+      const genderCell = newRow.insertCell();
+      const skillsCell = newRow.insertCell();
+      const hobbiesCell = newRow.insertCell();
+      const departmentCell = newRow.insertCell();
+      const positionCell = newRow.insertCell();
+      const salaryCell = newRow.insertCell();
+      const employmentTypeCell = newRow.insertCell();
+      const statusCell = newRow.insertCell();
+      const fileCell = newRow.insertCell();
+      const dateCell = newRow.insertCell();
+      const timeCell = newRow.insertCell();
+      const countryCell = newRow.insertCell();
+      const switchCell = newRow.insertCell();
+  
+      nameCell.innerHTML = name;
+      emailCell.innerHTML = email;
+      passwordCell.innerHTML = password;
+      bioCell.innerHTML = bio;
+      genderCell.innerHTML = gender;
+      skillsCell.innerHTML = skills.join(', ');
+      hobbiesCell.innerHTML = hobbies.join(', ');
+      departmentCell.innerHTML = department;
+      positionCell.innerHTML = position;
+      salaryCell.innerHTML = salary;
+      employmentTypeCell.innerHTML = employmentType;
+      statusCell.innerHTML = status;
+      fileCell.innerHTML = fileInput;
+      dateCell.innerHTML = dateInput;
+      timeCell.innerHTML = timeInput;
+      countryCell.innerHTML = countryInput;
+      switchCell.innerHTML = switchInput ? 'Yes' : 'No';
+  
+      employeeForm.reset();
+    });
+  </script>
+  
+</body>
+</html>

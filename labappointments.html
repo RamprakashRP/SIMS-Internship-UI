@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Lab Appointments</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="script" href="labappointments.js">
+    <style>
+        body {
+            overflow: scroll;
+            height: fit-content;
+            background: linear-gradient(to bottom,#fff, #c8dbe6, #ddba9a);
+        }
+
+        .tab {
+            display: none;
+            padding-bottom: 10px;
+        }
+
+        .tab.active {
+            display: block;
+        }
+
+        .tab-content {
+            padding: 10px;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            width: 500px;
+            flex-direction: column;
+            gap: 35px;
+            align-self: center;
+            margin: 0 auto;
+            padding: 30px;
+          }
+        .tab-nav {
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+
+        }
+
+        .tab-nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .tab-nav a {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #f1f1f1;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            height: 45px;
+            width: fit-content;
+            border-radius: 20px;
+            border: 2px solid #c36f1c;
+            cursor: pointer;
+            background-color: transparent;
+            transition: 0.5s;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 3em;
+        }
+
+        .tab-nav a:hover {
+            background-color: #120c47;
+            color: #c36f1c;
+        }
+
+        .tab-nav a.active {
+            background-color: #120c47;
+            color: #c36f1c;
+        }
+
+        .success-msg,
+        .error-msg {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .success-msg {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+        }
+
+        .error-msg {
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            color: #a94442;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+    <h1>Lab Appointments</h1>
+    <div class="submit">
+    <ul class="tab-nav">
+        <li><a href="#" onclick="showTab(event, 'upcoming')">Upcoming Appointments</a></li>
+        <li><a href="#" onclick="showTab(event, 'history')">Appointment History</a></li>
+        <li><a href="#" onclick="showTab(event, 'new')">New Appointment</a></li>
+    </ul>
+    </div>
+    
+    <div id="upcoming" class="tab active">
+        <div class="tab-content" id="upcoming-content" >
+            <h2>Upcoming Appointments</h2>
+            <div>
+                <h3>John Smith</h3>
+                <p>Date: 2023-07-10</p>
+                <p>Time: 10:00 AM</p>
+                <p>Doctor: Dr. Johnson</p>
+                <p>Lab: Lab A</p>
+                <p>Status: Confirmed</p>
+                <hr>
+            </div>
+            <div>
+                <h3>Jane Doe</h3>
+                <p>Date: 2023-07-12</p>
+                <p>Time: 2:30 PM</p>
+                <p>Doctor: Dr. Wilson</p>
+                <p>Lab: Lab B</p>
+                <p>Status: Confirmed</p>
+                <hr>
+            </div>
+            <div>
+                <h3>Mike Brown</h3>
+                <p>Date: 2023-07-15</p>
+                <p>Time: 9:00 AM</p>
+                <p>Doctor: Dr. Smith</p>
+                <p>Lab: Lab C</p>
+                <p>Status: Pending</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div id="history" class="tab">
+        <div class="tab-content" id="history-content">
+            <h2>Appointment History</h2>
+            <div>
+                <h3>John Smith</h3>
+                <p>Date: 2023-07-05</p>
+                <p>Time: 11:30 AM</p>
+                <p>Doctor: Dr. Johnson</p>
+                <p>Lab: Lab A</p>
+                <p>Status: Completed</p>
+                <hr>
+            </div>
+            <div>
+                <h3>Jane Doe</h3>
+                <p>Date: 2023-07-07</p>
+                <p>Time: 3:00 PM </p>
+                <p>Doctor: Dr. Wilson</p>
+                <p>Lab: Lab B</p>
+                <p>Status: Completed</p>
+                <hr>
+            </div>
+            <div>
+                <h3>Mike Brown</h3>
+                <p>Date: 2023-07-09</p>
+                <p>Time: 8:30 AM</p>
+                <p>Doctor: Dr. Smith</p>
+                <p>Lab: Lab C</p>
+                <p>Status: Completed</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div id="new" class="tab">
+    <div class="tab-content" id="new-content">
+        <h2>New Appointment</h2>
+        <form onsubmit="saveAppointment(event)">
+            <div class="inputGroup">
+                <input type="text" id="patient-name" name="patient-name" required>
+                <label for="patient-name">Patient Name:</label>
+            </div>
+            <div class="inputGroup">
+                <input type="date" id="appointment-date" name="appointment-date" required>
+                <label for="appointment-date">Appointment Date:</label>
+            </div>
+            <div class="inputGroup">
+                <input type="time" id="appointment-time" name="appointment-time" required>
+                <label for="appointment-time">Appointment Time:</label>
+            </div>
+            <div class="listbox-group">
+                <select id="doctor" name="doctor" required>
+                    <option value=""></option>
+                    <option value="Dr. Smith">Dr. Smith</option>
+                    <option value="Dr. Johnson">Dr. Johnson</option>
+                    <option value="Dr. Wilson">Dr. Wilson</option>
+                </select>
+                <label class="input-label" for="doctor">Doctor:</label>
+            </div>
+            <div class="listbox-group">
+                <select id="lab" name="lab" required>
+                    <option value=""></option>
+                    <option value="Lab A">Lab A</option>
+                    <option value="Lab B">Lab B</option>
+                    <option value="Lab C">Lab C</option>
+                </select>
+                <label class="input-label" for="lab">Lab:</label>
+            </div>
+            <div class="listbox-group">
+                <select id="status" name="status" required>
+                    <option value=""></option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+                <label class="input-label" for="status">Status:</label>
+            </div>
+            <div class="submit">
+                <input type="submit" value="Save">
+            </div>
+        </form>
+        <div id="success-msg" class="success-msg" style="display: none;">
+            Appointment saved successfully!
+        </div>
+    
+        <div id="error-msg" class="error-msg" style="display: none;">
+            Appointment already exists.
+        </div>
+    </div>
+    
+</div>
+
+
+    <div id="success-msg" class="success-msg" style="display: none;">
+        Appointment saved successfully!
+    </div>
+
+    <div id="error-msg" class="error-msg" style="display: none;">
+        Appointment already exists.
+    </div>
+    </main>
+    <script>
+        function showTab(event, tabId) {
+            event.preventDefault();
+
+            var tabs = document.getElementsByClassName("tab");
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+
+            var tabContent = document.getElementById(tabId);
+            tabContent.classList.add("active");
+        }
+
+        function saveAppointment(event) {
+    event.preventDefault();
+
+    var patientName = document.getElementById("patient-name").value;
+    var appointmentDate = document.getElementById("appointment-date").value;
+    var appointmentTime = document.getElementById("appointment-time").value;
+    var selectedDoctor = document.getElementById("doctor").value;
+    var selectedLab = document.getElementById("lab").value;
+    var selectedStatus = document.getElementById("status").value;
+
+    var isExistingAppointment = upcomingAppointments.some(function (appointment) {
+        return (
+            appointment.patient === patientName &&
+            appointment.date === appointmentDate &&
+            appointment.time === appointmentTime &&
+            appointment.doctor === selectedDoctor &&
+            appointment.lab === selectedLab
+        );
+    });
+
+    var hasClash = upcomingAppointments.some(function (appointment) {
+        return (
+            appointment.date === appointmentDate &&
+            appointment.time === appointmentTime &&
+            appointment.doctor === selectedDoctor &&
+            appointment.lab === selectedLab
+        );
+    });
+
+    var newAppointmentForm = document.getElementById("new-content");
+    var successMsg = document.getElementById("success-msg");
+    var errorMsg = document.getElementById("error-msg");
+
+    if (isExistingAppointment || hasClash) {
+        errorMsg.textContent = "Appointment clashes with an existing appointment.";
+        errorMsg.style.display = "block";
+        successMsg.style.display = "none";
+    } else {
+        var appointmentDetails = {
+            patient: patientName,
+            date: appointmentDate,
+            time: appointmentTime,
+            doctor: selectedDoctor,
+            lab: selectedLab,
+            status: selectedStatus
+        };
+
+        upcomingAppointments.push(appointmentDetails);
+        updateUpcomingAppointments();
+
+        successMsg.textContent = "Appointment saved successfully!";
+        successMsg.style.display = "block";
+        errorMsg.style.display = "none";
+
+        // Clear form fields
+        document.getElementById("patient-name").value = "";
+        document.getElementById("appointment-date").value = "";
+        document.getElementById("appointment-time").value = "";
+        document.getElementById("doctor").value = "";
+        document.getElementById("lab").value = "";
+        document.getElementById("status").value = "";
+    }
+
+    // Scroll to top of the page
+    window.scrollTo(0, 0);
+}
+
+
+function updateUpcomingAppointments() {
+    var upcomingContent = document.getElementById("upcoming-content");
+    upcomingContent.innerHTML = "";
+
+    upcomingAppointments.forEach(function (appointment) {
+        var appointmentDetails = document.createElement("div");
+        appointmentDetails.innerHTML = `
+            <h3>${appointment.patient}</h3>
+            <p>Date: ${appointment.date}</p>
+            <p>Time: ${appointment.time}</p>
+            <p>Doctor: ${appointment.doctor}</p>
+            <p>Lab: ${appointment.lab}</p>
+            <p>Status: ${appointment.status}</p>
+            <hr>
+        `;
+        upcomingContent.appendChild(appointmentDetails);
+    });
+}
+
+
+        function getExistingAppointments() {
+            var existingAppointments = localStorage.getItem("labAppointments");
+            return existingAppointments ? JSON.parse(existingAppointments) : [];
+        }
+
+        function saveExistingAppointments(appointments) {
+            localStorage.setItem("labAppointments", JSON.stringify(appointments));
+        }
+
+        // Populate Upcoming Appointments
+var upcomingContent = document.getElementById("upcoming-content");
+var upcomingAppointments = [
+    {
+        patient: "John Smith",
+        date: "2023-07-10",
+        time: "10:00 AM",
+        doctor: "Dr. Johnson",
+        lab: "Lab A",
+        status: "Confirmed"
+    },
+    {
+        patient: "Jane Doe",
+        date: "2023-07-12",
+        time: "2:30 PM",
+        doctor: "Dr. Wilson",
+        lab: "Lab B",
+        status: "Confirmed"
+    },
+    {
+        patient: "Mike Brown",
+        date: "2023-07-15",
+        time: "9:00 AM",
+        doctor: "Dr. Smith",
+        lab: "Lab C",
+        status: "Pending"
+    }
+];
+
+upcomingAppointments.forEach(function (appointment) {
+    var appointmentDetails = document.createElement("div");
+    appointmentDetails.innerHTML = `
+        <h3>${appointment.patient}</h3>
+        <p>Date: ${appointment.date}</p>
+        <p>Time: ${appointment.time}</p>
+        <p>Doctor: ${appointment.doctor}</p>
+        <p>Lab: ${appointment.lab}</p>
+        <p>Status: ${appointment.status}</p>
+        <hr>
+    `;
+    upcomingContent.appendChild(appointmentDetails);
+});
+
+        // Populate Appointment History
+        var historyContent = document.getElementById("history-content");
+        var appointmentHistory = [
+            {
+                patient: "John Smith",
+                date: "2023-07-05",
+                time: "11:30 AM",
+                doctor: "Dr. Johnson",
+                lab: "Lab A",
+                status: "Completed"
+            },
+            {
+                patient: "Jane Doe",
+                date: "2023-07-07",
+                time: "3:00 PM",
+                doctor: "Dr. Wilson",
+                lab: "Lab B",
+                status: "Completed"
+            },
+            {
+                patient: "Mike Brown",
+                date: "2023-07-09",
+                time: "8:30 AM",
+                doctor: "Dr. Smith",
+                lab: "Lab C",
+                status: "Completed"
+            }
+        ];
+
+        appointmentHistory.forEach(function (appointment) {
+            var appointmentDetails = document.createElement("div");
+            appointmentDetails.innerHTML = `
+                <h3>${appointment.patient}</h3>
+                <p>Date: ${appointment.date}</p>
+                <p>Time: ${appointment.time}</p>
+                <p>Doctor: ${appointment.doctor}</p>
+                <p>Lab: ${appointment.lab}</p>
+                <p>Status: ${appointment.status}</p>
+                <hr>
+            `;
+            historyContent.appendChild(appointmentDetails);
+        });
+    </script>
+<script src="./labappointments.js"></script>
+</body>
+
+</html>

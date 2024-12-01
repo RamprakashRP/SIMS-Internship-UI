@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Room Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="script" href="roomdetails.js">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Include CSS stylesheets -->
+    <style>
+        body {
+            overflow: scroll;
+            background: linear-gradient(to bottom,#fff, #c8dbe6, #ddba9a);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .queries {
+            color: red;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #ecd6be;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(252, 249, 249, 0.2);
+            color: red;
+        }
+
+        .close-button {
+            border: none;
+            background-color: transparent;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            padding: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-button:hover {
+            background-color: #cb6767;
+            color: white;
+        }
+
+        .checkbox-group label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        display: none;
+    }
+
+    .checkbox-group .icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .checkbox-group input[type="checkbox"]:checked + .icon {
+        /* Add your checked icon styles here */
+        background-color: #c5d7f0;
+        color: #fff;
+    }
+
+    .non-ac-icon {
+        position: relative;
+    }
+
+    .non-ac-icon::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        width: 80%;
+        height: 2px;
+        background-color: #00005c;
+    }
+
+    </style>
+</head>
+
+<body>
+    <h1>Room Details</h1>
+    <fieldset class="checkbox-group">
+        <legend>Select Room Type:</legend>
+        <label>
+            <input type="checkbox" id="sharingCheckbox" value="sharing" onchange="displayRoomDetails()" />
+            <span class="icon material-icons">people</span>Sharing
+        </label>
+        <label>
+            <input type="checkbox" id="nonsharingCheckbox" value="nonsharing" onchange="displayRoomDetails()" />
+            <span class="icon material-icons">person</span>Non-Sharing
+        </label>
+        <label>
+            <input type="checkbox" id="acCheckbox" value="ac" onchange="displayRoomDetails()" />
+            <span class="icon material-icons">ac_unit</span>AC
+        </label>
+        <label>
+            <input type="checkbox" id="nonacCheckbox" value="nonac" onchange="displayRoomDetails()" />
+            <span class="icon material-icons non-ac-icon">ac_unit</span>Non-AC
+        </label>
+    </fieldset>
+    <div class="table-container">
+    <table id="roomDetailsTable">
+        <tr>
+            <th>Room Type</th>
+            <th>Occupancy Status</th>
+            <th>Patient Details</th>
+            <th>Check-in Time</th>
+            <th>Check-out Time</th>
+            <th>Queries</th>
+        </tr>
+    </table>
+    </div>
+
+    <div id="messageBox" class="message-box">
+        <h2>Queries</h2>
+        <ul id="messageList"></ul>
+        <button class="close-button" onclick="hideMessageBox()">Close</button>
+    </div>    
+
+    <!-- Include JavaScript code -->
+    <script>
+        // Hardcoded room details
+        var roomDetails = [
+            {
+                roomType: "sharing",
+                occupancyStatus: "occupied",
+                patientDetails: "John Doe",
+                checkInTime: "2022-06-15 10:00 AM",
+                checkOutTime: "2022-06-20 11:00 AM",
+                queries: ["Issue with AC", "Additional pillow request"]
+            },
+            {
+                roomType: "nonsharing",
+                occupancyStatus: "unoccupied",
+                patientDetails: "",
+                checkInTime: "",
+                checkOutTime: "",
+                queries: []
+            },
+            {
+                roomType: "ac",
+                occupancyStatus: "occupied",
+                patientDetails: "Jane Smith",
+                checkInTime: "2022-06-18 02:00 PM",
+                checkOutTime: "2022-06-25 12:00 PM",
+                queries: ["Room cooling issue"]
+            },
+            {
+                roomType: "nonac",
+                occupancyStatus:"occupied",
+                patientDetails: "Michael Johnson",
+                checkInTime: "2022-06-10 08:00 AM",
+                checkOutTime: "2022-06-22 10:00 AM",
+                queries: []
+            }
+        ];
+
+        function displayRoomDetails() {
+            var sharingCheckbox = document.getElementById("sharingCheckbox");
+            var nonsharingCheckbox = document.getElementById("nonsharingCheckbox");
+            var acCheckbox = document.getElementById("acCheckbox");
+            var nonacCheckbox = document.getElementById("nonacCheckbox");
+
+            var selectedRoomTypes = [];
+            if (sharingCheckbox.checked) selectedRoomTypes.push(sharingCheckbox.value);
+            if (nonsharingCheckbox.checked) selectedRoomTypes.push(nonsharingCheckbox.value);
+            if (acCheckbox.checked) selectedRoomTypes.push(acCheckbox.value);
+            if (nonacCheckbox.checked) selectedRoomTypes.push(nonacCheckbox.value);
+
+            var table = document.getElementById("roomDetailsTable");
+
+            // Clear previous table rows
+            clearTableRows(table);
+
+            // Populate table with room details
+            roomDetails.forEach(function(room) {
+                if (selectedRoomTypes.includes(room.roomType)) {
+                    var row = table.insertRow();
+
+                    var roomTypeCell = row.insertCell();
+                    roomTypeCell.textContent = room.roomType;
+
+                    var occupancyStatusCell = row.insertCell();
+                    occupancyStatusCell.textContent = room.occupancyStatus;
+
+                    var patientDetailsCell = row.insertCell();
+                    patientDetailsCell.textContent = room.patientDetails;
+
+                    var checkInTimeCell = row.insertCell();
+                    checkInTimeCell.textContent = room.checkInTime;
+
+                    var checkOutTimeCell = row.insertCell();
+                    checkOutTimeCell.textContent = room.checkOutTime;
+
+                    var queriesCell = row.insertCell();
+                    if (room.queries.length > 0) {
+                        var queriesCount = room.queries.length;
+                        var queriesText = document.createElement("span");
+                        queriesText.classList.add("queries");
+                        queriesText.textContent = queriesCount;
+                        queriesText.addEventListener("click", function() {
+                            showMessageBox(room.queries);
+                        });
+                        queriesCell.appendChild(queriesText);
+                    } else {
+                        queriesCell.textContent = "-";
+                    }
+                }
+            });
+        }
+
+        function clearTableRows(table) {
+            var rowCount = table.rows.length;
+            for (var i = rowCount - 1; i > 0; i--) {
+                table.deleteRow(i);
+            }
+        }
+
+        function showMessageBox(queries) {
+            var messageBox = document.getElementById("messageBox");
+            var messageList = document.getElementById("messageList");
+
+            // Clear previous messages
+            messageList.innerHTML = "";
+
+            // Add queries to message list
+            queries.forEach(function(query) {
+                var listItem = document.createElement("li");
+                listItem.textContent = query;
+                messageList.appendChild(listItem);
+            });
+
+            // Show message box
+            messageBox.style.display = "block";
+        }
+
+        function hideMessageBox() {
+            var messageBox = document.getElementById("messageBox");
+            messageBox.style.display = "none";
+        }
+    </script>
+    <script src="./roomdetails.js"></script>
+</body>
+
+</html>
